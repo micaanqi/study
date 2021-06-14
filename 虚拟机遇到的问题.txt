@@ -1,0 +1,24 @@
+1.yum CentOS6 yum命令报错YumRepo Error: All mirror URLs are not using ftp, http[s] or file
+改：备份配置文件，防止以后出错后不好恢复
+
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+
+执行下面命令，新建CentOS-Base.repo配置：
+
+vim /etc/yum.repos.d/CentOS-Base.repo
+
+复制粘贴如下命令
+
+[centos-office]
+name=centos-office
+failovermethod=priority
+baseurl=https://vault.centos.org/6.10/os/x86_64/
+gpgcheck=1
+gpgkey=https://vault.centos.org/6.10/os/x86_64/RPM-GPG-KEY-CentOS-6
+
+保存后退出
+
+执行yum list  正常无报错
+
+此时即可正常使用yum命令了。
+2.
